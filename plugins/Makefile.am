@@ -96,6 +96,12 @@ else
 INPUT_MODULE =
 endif
 
+if ENABLE_NO_PRESSURE_MODULE
+NO_PRESS_MODULE = nopressure.la
+else
+NO_PRESS_MODULE =
+endif
+
 if ENABLE_TOUCHKIT_MODULE
 TOUCHKIT_MODULE = touchkit.la
 else
@@ -129,6 +135,7 @@ pluginexec_LTLIBRARIES = \
 	$(DMC_MODULE) \
 	$(H2200_LINEAR_MODULE) \
 	$(INPUT_MODULE) \
+        $(NO_PRESS_MODULE) \
 	$(TOUCHKIT_MODULE) \
 	$(CY8MRLN_PALMPRE_MODULE)
   
@@ -176,6 +183,10 @@ dmc_la_LDFLAGS		= -module $(LTVSN)
 input_la_SOURCES	= input-raw.c
 input_la_LDFLAGS	= -module $(LTVSN)
 input_la_LIBADD		= $(top_builddir)/src/libts.la
+
+nopressure_la_SOURCES	= nopressure.c
+nopressure_la_LDFLAGS	= -module $(LTVSN)
+nopressure_la_LIBADD	= $(top_builddir)/src/libts.la
 
 touchkit_la_SOURCES	= touchkit-raw.c
 touchkit_la_LDFLAGS	= -module $(LTVSN)
