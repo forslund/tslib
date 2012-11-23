@@ -30,6 +30,12 @@ else
 DEJITTER_MODULE =
 endif
 
+if ENABLE_SKIP_MODULE
+SKIP_MODULE = skip.la
+else
+SKIP_MODULE =
+endif
+
 if ENABLE_VARIANCE_MODULE
 VARIANCE_MODULE = variance.la
 else
@@ -117,6 +123,7 @@ endif
 pluginexec_LTLIBRARIES = \
 	$(LINEAR_MODULE) \
 	$(DEJITTER_MODULE) \
+        $(SKIP_MODULE) \
 	$(VARIANCE_MODULE) \
 	$(PTHRES_MODULE) \
 	$(UCB1X00_MODULE) \
@@ -140,6 +147,10 @@ dejitter_la_SOURCES	= dejitter.c
 dejitter_la_LDFLAGS	= -module $(LTVSN)
 dejitter_la_LIBADD	= $(top_builddir)/src/libts.la
   
+skip_la_SOURCES		= skip.c
+skip_la_LDFLAGS		= -module $(LTVSN)
+skip_la_LIBADD		= $(top_builddir)/src/libts.la
+
 linear_la_SOURCES	= linear.c
 linear_la_LDFLAGS	= -module $(LTVSN)
 linear_la_LIBADD	= $(top_builddir)/src/libts.la
